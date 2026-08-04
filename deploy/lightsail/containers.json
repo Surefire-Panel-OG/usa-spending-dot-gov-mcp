@@ -1,0 +1,30 @@
+{
+  "serviceName": "usaspending-mcp",
+  "containers": {
+    "app": {
+      "image": ":usaspending-mcp.app.latest",
+      "environment": {
+        "MCP_SERVER_HOST": "0.0.0.0",
+        "MCP_SERVER_PORT": "8000",
+        "MCP_SERVER_DEBUG": "false",
+        "MCP_SERVER_CORS_ALLOW_ORIGINS": "*",
+        "MCP_SERVER_RATE_LIMIT_PER_MINUTE": "120"
+      },
+      "ports": {
+        "8000": "HTTP"
+      }
+    }
+  },
+  "publicEndpoint": {
+    "containerName": "app",
+    "containerPort": 8000,
+    "healthCheck": {
+      "path": "/healthz",
+      "successCodes": "200",
+      "intervalSeconds": 10,
+      "timeoutSeconds": 5,
+      "healthyThreshold": 2,
+      "unhealthyThreshold": 3
+    }
+  }
+}
