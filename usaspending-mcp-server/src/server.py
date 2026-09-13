@@ -253,7 +253,18 @@ starlette_app = RateLimitMiddleware(starlette_app, RATE_LIMIT_PER_MINUTE)
 
 
 def main():
-    uvicorn.run(starlette_app, host=HOST, port=PORT)
+    # Trust X-Forwarded-Proto/For from any upstream proxy. Behind Lightsail's
+    # load balancer the container only ever sees the LB, so this is safe, and
+    # without it Starlette's "/mcp" -> "/mcp/" redirect is emitted with an
+    # http:// Location, which strict MCP clients (e.g. ChatGPT) refuse to
+    # follow from an https:// origin.
+    uvicorn.run(
+        starlette_app,
+        host=HOST,
+        port=PORT,
+        proxy_headers=True,
+        forwarded_allow_ips=os.getenv("MCP_SERVER_FORWARDED_ALLOW_IPS", "*"),
+    )
     return 0
 
 

@@ -1,9 +1,11 @@
-# Connect the USAspending tool in Claude Desktop
+# Connect the USAspending tool
+
+Works in **Claude Desktop** and **ChatGPT**. Pick your section below.
 
 One-time setup, ~30 seconds. You need a Claude **Pro**, **Max**, **Team**, or
 **Enterprise** plan (Free supports one custom connector).
 
-## Steps
+## Claude Desktop
 
 1. Open **Claude Desktop**.
 2. Go to **Settings → Connectors** (also reachable via **Customize → Connectors**).
@@ -16,9 +18,28 @@ One-time setup, ~30 seconds. You need a Claude **Pro**, **Max**, **Team**, or
 That's it — no login, no token. The USAspending tools now appear in your chats
 and in Cowork.
 
+## ChatGPT
+
+Requires **Developer mode**, which OpenAI enables per account/workspace policy.
+If you don't see the option, ask your workspace admin.
+
+1. In ChatGPT, open **Settings → Security and login** and turn on
+   **Developer mode**.
+2. Go to <https://chatgpt.com/plugins> and click the **+** (add) button.
+3. **Name:** `USAspending`. Add a short description if prompted.
+4. **Connection:** choose the public-endpoint option and paste the same
+   `/mcp` URL as above.
+5. If asked about authentication, choose the no-auth / none option — the
+   server needs no login.
+6. Create the connection, then enable it in a chat via the tools/plugins menu.
+
+Note: this connector works in normal chats. It does **not** work with ChatGPT's
+**deep research** or **company knowledge** features, which require the server
+to expose special `search` and `fetch` tools it doesn't have.
+
 ## Try it
 
-Ask Claude something like:
+Ask something like:
 
 - "Which companies won the most Navy contracts in FY2024?"
 - "Show Department of Veterans Affairs spending over the last 5 fiscal years."

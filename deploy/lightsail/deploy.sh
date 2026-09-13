@@ -78,6 +78,6 @@ URL="$(aws lightsail get-container-services --service-name "${SERVICE_NAME}" \
         --region "${AWS_REGION}" --query 'containerServices[0].url' --output text)"
 echo ""
 echo "==> Deployment submitted. Public URL: ${URL}"
-echo "==> MCP endpoint for Claude Desktop connectors:  ${URL}mcp"
+echo "==> MCP endpoint (Claude Desktop / ChatGPT):      ${URL}mcp"
 echo "==> Health check:                                ${URL}healthz"
 echo "    (First deployment takes a few minutes to go ACTIVE.)"
